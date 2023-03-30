@@ -2,4 +2,9 @@ FROM mcr.microsoft.com/mssql/server:2019-latest
 
 MAINTAINER nhattien.lam.545@gmail.com
 
-RUN apt update -y && apt install -y zip unzip
+USER root
+
+RUN apt-get update \
+    && apt-get install -y zip unzip \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
