@@ -11,3 +11,8 @@ services:
       - MSSQL_SA_PASSWORD=P@ssowrd123
       - INIT_MEM=4096m
       - MAX_MEM=8192m
+    volumes:
+      - mssql:/var/opt/mssql
+volumes:
+  mssql:
+    external: true
