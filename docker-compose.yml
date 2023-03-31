@@ -1,5 +1,6 @@
 version: "2.0"
 services:
+
   mssql-server-2019:
     build: mssql-2019/.
     image: mssql-2019
@@ -13,6 +14,22 @@ services:
       - MAX_MEM=8192m
     volumes:
       - mssql:/var/opt/mssql
+
+  apache-httpd:
+    build: apache-httpd-2.4/.
+    image: httpd
+    container_name: apache-httpd
+    ports:
+     - "80:80"
+    environment:
+     - INIT_MEM=512m
+     - MAX_MEM=1024m
+    volumes:
+     - httpd_conf:/usr/local/apache2/conf
+
 volumes:
   mssql:
     external: true
+  httpd_conf:
+    external: true
+  
