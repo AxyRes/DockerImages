@@ -5,7 +5,7 @@ services:
     build: mssql-2019/.
     image: mssql-2019
     container_name: mssql-server-2019
-    restarts: always
+    restart: always
     ports:
       - "1433:1433"
     environment:
@@ -20,7 +20,7 @@ services:
     build: apache-httpd-2.4/.
     image: httpd
     container_name: apache-httpd
-    restarts: always
+    restart: always
     ports:
      - "80:80"
      - "443:443"
