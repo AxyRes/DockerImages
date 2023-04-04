@@ -4,4 +4,5 @@ MAINTAINER nhattien.lam.545@gmail.com
 
 COPY conf/httpd.conf /usr/local/apache2/conf/httpd.conf
 COPY conf/httpd-vhosts.conf /usr/local/apache2/conf/extra/httpd-vhosts.conf
-COPY $package/* /usr/local/apache2/htdocs/*
+COPY package/index.html /usr/local/apache2/htdocs/index.html
+COPY package/assets /usr/local/apache2/htdocs/assets
