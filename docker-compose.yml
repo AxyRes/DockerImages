@@ -1,6 +1,11 @@
 version: "2.0"
 services:
 
+  centos:
+    build: docker-centos-7-latest/.
+    image: dockercentos
+    container_name: centos
+
   mssql-server-2019:
     build: mssql-2019/.
     image: mssql-2019
