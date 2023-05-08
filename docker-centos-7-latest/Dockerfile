@@ -10,7 +10,7 @@ RUN yum update -y && \
     curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose && \
     chmod +x /usr/local/bin/docker-compose
 
-RUN curl https://dot.net/v1/dotnet-install.sh -O dotnet-install.sh && \
+RUN curl -fsSL https://dot.net/v1/dotnet-install.sh -o dotnet-install.sh && \
     chmod +x dotnet-install.sh && \
     sh dotnet-install.sh
 
