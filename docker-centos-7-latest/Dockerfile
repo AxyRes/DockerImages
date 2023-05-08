@@ -3,7 +3,7 @@ FROM centos:7
 MAINTAINER nhattien.lam.545@gmail.com
 
 RUN yum update -y && \
-    yum install -y curl git zip unzip && \
+    yum install -y curl git zip unzip libicu && \
     curl -fsSL https://get.docker.com -o get-docker.sh && \
     sh get-docker.sh && \
     rm get-docker.sh && \
