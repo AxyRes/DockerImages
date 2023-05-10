@@ -16,7 +16,7 @@ services:
     environment:
       - ACCEPT_EULA=Y
       - MSSQL_SA_PASSWORD=P@ssword123
-      - INIT_MEM=4096m
+      - INIT_MEM=6144m
       - MAX_MEM=8192m
     volumes:
       - mssql:/var/opt/mssql
@@ -53,7 +53,5 @@ volumes:
   mssql:
     external: true
   httpd_conf:
-    external: true
-  nginx_conf:
     external: true
   
