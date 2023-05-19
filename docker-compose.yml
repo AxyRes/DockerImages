@@ -43,7 +43,8 @@ services:
     ports:
      - "26854:8080"
     environment:
-     - RUNTIME_OPTS="-Xms512m -Xmx1024m"
+     - INIT_MEM=512m
+     - MAX_MEM=1024m
     volumes:
      - jfrog_data:/artifactory
 
