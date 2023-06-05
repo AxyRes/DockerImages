@@ -35,6 +35,20 @@ services:
     volumes:
      - httpd_conf:/usr/local/apache2/conf
 
+  nginx-httpd:
+    build: apache-httpd-2.4/.
+    image: nginx
+    container_name: nginx
+    restart: always
+    ports:
+     - "80:80"
+     - "443:443"
+    environment:
+     - INIT_MEM=512m
+     - MAX_MEM=1024m
+    volumes:
+     - nginx_conf:/etc/nginx
+
   jfrog:
     build: artifactory-jfrog-latest/.
     image: jfrog
@@ -51,8 +65,10 @@ services:
 volumes:
   mssql:
     external: true
-  httpd_conf:
-    external: true
+#  httpd_conf:
+#    external: true
   jfrog_data:
+    external: true
+  nginx_conf:
     external: true
   
