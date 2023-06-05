@@ -35,8 +35,8 @@ services:
     volumes:
      - httpd_conf:/usr/local/apache2/conf
 
-  nginx-httpd:
-    build: apache-httpd-2.4/.
+  nginx:
+    build: nginx/.
     image: nginx
     container_name: nginx
     restart: always
