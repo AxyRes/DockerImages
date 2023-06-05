@@ -21,19 +21,19 @@ services:
     volumes:
       - mssql:/var/opt/mssql
 
-  apache-httpd:
-    build: apache-httpd-2.4/.
-    image: httpd
-    container_name: apache-httpd
-    restart: always
-    ports:
-     - "80:80"
-     - "443:443"
-    environment:
-     - INIT_MEM=512m
-     - MAX_MEM=1024m
-    volumes:
-     - httpd_conf:/usr/local/apache2/conf
+#  apache-httpd:
+#    build: apache-httpd-2.4/.
+#    image: httpd
+#    container_name: apache-httpd
+#    restart: always
+#    ports:
+#     - "80:80"
+#     - "443:443"
+#    environment:
+#     - INIT_MEM=512m
+#     - MAX_MEM=1024m
+#    volumes:
+#     - httpd_conf:/usr/local/apache2/conf
 
   nginx:
     build: nginx/.
