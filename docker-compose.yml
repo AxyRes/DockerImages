@@ -55,10 +55,11 @@ services:
     container_name: artifactory-jfrog
     restart: always
     ports:
-     - "26854:8080"
+     - "26854:8081"
+     - "26855:8082"
     environment:
-     - INIT_MEM=512m
-     - MAX_MEM=1024m
+     - INIT_MEM=1024m
+     - MAX_MEM=2048m
     volumes:
      - jfrog_data:/artifactory
 
