@@ -1,10 +1,15 @@
 version: "2.0"
 services:
 
-  centos:
-    build: docker-centos-7-latest/.
-    image: dockercentos
-    container_name: centos
+  centos-dotnet-6:
+    build: docker-centos-7-dotnet-6/.
+    image: dockercentos-dotnet-6
+    container_name: centos-dotnet-6
+  
+  centos-dotnet-7:
+    build: docker-centos-7-dotnet-7/.
+    image: dockercentos-dotnet-7
+    container_name: centos-dotnet-7
 
   mssql-server-2019:
     build: mssql-2019/.
