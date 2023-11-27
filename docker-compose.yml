@@ -1,15 +1,15 @@
 version: "2.0"
 services:
 
-  centos-dotnet-6:
-    build: docker-centos-7-dotnet-6/.
-    image: dockercentos-dotnet-6
-    container_name: centos-dotnet-6
+#  centos-dotnet-6:
+#    build: docker-centos-7-dotnet-6/.
+#    image: dockercentos-dotnet-6
+#    container_name: centos-dotnet-6
   
-  centos-dotnet-7:
-    build: docker-centos-7-dotnet-7/.
-    image: dockercentos-dotnet-7
-    container_name: centos-dotnet-7
+#  centos-dotnet-7:
+#    build: docker-centos-7-dotnet-7/.
+#    image: dockercentos-dotnet-7
+#    container_name: centos-dotnet-7
 
   mssql-server-2019:
     build: mssql-2019/.
@@ -63,8 +63,9 @@ services:
      - "26854:8081"
      - "26855:8082"
     environment:
-     - INIT_MEM=1024m
-     - MAX_MEM=2048m
+     - ARTIFACTORY_CONTEXT=/jfrog-axyres
+     - INIT_MEM=4096m
+     - MAX_MEM=8192m
     volumes:
      - jfrog_data:/artifactory
 
