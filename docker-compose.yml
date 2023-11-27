@@ -63,17 +63,28 @@ services:
      - "26854:8081"
      - "26855:8082"
     environment:
-     - ARTIFACTORY_CONTEXT=/jfrog-axyres
      - INIT_MEM=4096m
      - MAX_MEM=8192m
     volumes:
      - jfrog_data:/artifactory
+  
+  nexus:
+    image: sonatype/nexus3
+    container_name: nexus
+    restart: always
+    ports:
+      - "8081:8081"
+    volumes:
+      - nexus-data:/nexus-data
+    environment:
+      - NEXUS_CONTEXT=/nexus
+    
 
 volumes:
   mssql:
     external: true
-#  httpd_conf:
-#    external: true
+  nexus-data:
+    external: true
   jfrog_data:
     external: true
   nginx_conf:
