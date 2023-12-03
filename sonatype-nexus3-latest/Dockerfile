@@ -3,8 +3,8 @@ FROM sonatype/nexus3
 USER root
 
 # Copy SSL certificate and key to Nexus SSL directory
-COPY nexus.crt /nexus-data/ssl/nexus.crt
-COPY nexus.key /nexus-data/ssl/nexus.key
+COPY cert/nexus.crt /nexus-data/ssl/nexus.crt
+COPY cert/nexus.key /nexus-data/ssl/nexus.key
 
 # Set the Nexus context path and configure SSL
 RUN echo "nexus-args=${karaf.etc}/jetty.xml,${karaf.etc}/jetty-http.xml,${karaf.etc}/jetty-requestlog.xml" >> /nexus-data/etc/nexus.properties && \
