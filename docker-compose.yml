@@ -69,12 +69,13 @@ services:
      - jfrog_data:/artifactory
   
   nexus:
-    build: sonatype-nexus3-latest/.
-    image: nexus3-sonatype
+    image: sonatype/nexus3
     container_name: nexus3
     restart: always
     ports:
       - "8081:8081"
+    environment:
+      - NEXUS_CONTEXT=/nexus
     volumes:
       - nexus-data:/nexus-data
     
