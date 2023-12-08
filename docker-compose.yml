@@ -67,24 +67,10 @@ services:
      - MAX_MEM=8192m
     volumes:
      - jfrog_data:/artifactory
-  
-  nexus:
-    image: sonatype/nexus3
-    container_name: nexus3
-    restart: always
-    ports:
-      - "8081:8081"
-      - "32755:32755"
-    environment:
-      - NEXUS_CONTEXT=nexus
-    volumes:
-      - nexus-data:/nexus-data
     
 
 volumes:
   mssql:
-    external: true
-  nexus-data:
     external: true
   jfrog_data:
     external: true
