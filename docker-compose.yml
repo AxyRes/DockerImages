@@ -11,6 +11,20 @@ services:
 #    image: dockercentos-dotnet-7
 #    container_name: centos-dotnet-7
 
+#  jfrog:
+#    build: artifactory-jfrog-latest/.
+#    image: jfrog
+#    container_name: artifactory-jfrog
+#    restart: always
+#    ports:
+#     - "26854:8081"
+#     - "26855:8082"
+#    environment:
+#     - INIT_MEM=4096m
+#     - MAX_MEM=8192m
+#    volumes:
+#     - jfrog_data:/var/opt/jfrog/artifactory
+
   mssql-server-2019:
     build: mssql-2019/.
     image: mssql-2019
@@ -26,20 +40,6 @@ services:
     volumes:
       - mssql:/var/opt/mssql
 
-#  apache-httpd:
-#    build: apache-httpd-2.4/.
-#    image: httpd
-#    container_name: apache-httpd
-#    restart: always
-#    ports:
-#     - "80:80"
-#     - "443:443"
-#    environment:
-#     - INIT_MEM=512m
-#     - MAX_MEM=1024m
-#    volumes:
-#     - httpd_conf:/usr/local/apache2/conf
-
   nginx:
     build: nginx/.
     image: nginx
@@ -54,26 +54,36 @@ services:
     volumes:
      - nginx_conf:/etc/nginx
 
-  jfrog:
-    build: artifactory-jfrog-latest/.
-    image: jfrog
-    container_name: artifactory-jfrog
+  aws-nginx-nexus:
+    build: aws-nginx-nexus/.
+    image: nginx-nexus
+    container_name: nginx-nexus
     restart: always
     ports:
-     - "26854:8081"
-     - "26855:8082"
+     - "80:80"
+     - "443:443"
     environment:
-     - INIT_MEM=4096m
-     - MAX_MEM=8192m
+     - INIT_MEM=512m
+     - MAX_MEM=1024m
     volumes:
-     - jfrog_data:/var/opt/jfrog/artifactory
+     - nginx_conf:/etc/nginx
+
+  nexus:
+    image: sonatype/nexus3
+    container_name: nexus3
+    restart: always
+    ports:
+      - "8081:8081"
+    environment:
+      - INIT_MEM=6144m
+      - MAX_MEM=8192m
+    volumes:
+      - nexus-data:/nexus-data
     
 
 volumes:
+  nexus-data:
   mssql:
-    external: true
   jfrog_data:
-    external: true
   nginx_conf:
-    external: true
   
