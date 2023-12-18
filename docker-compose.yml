@@ -74,9 +74,6 @@ services:
     restart: always
     ports:
       - "8081:8081"
-    environment:
-      - INIT_MEM=6144m
-      - MAX_MEM=8192m
     volumes:
       - nexus-data:/nexus-data
     
