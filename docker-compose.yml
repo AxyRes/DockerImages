@@ -82,8 +82,18 @@ services:
     
 
 volumes:
-  nexus-data:
   mssql:
   jfrog_data:
+  nexus-data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/docker/volume/nexus
   nginx_conf:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/docker/volume/aws-nginx
   
