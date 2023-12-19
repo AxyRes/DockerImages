@@ -92,3 +92,5 @@ volumes:
       o: bind
       device: /home/docker/volume/aws-nginx
   
+networks:
+  default:
