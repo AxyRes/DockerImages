@@ -11,19 +11,19 @@ services:
 #    image: dockercentos-dotnet-7
 #    container_name: centos-dotnet-7
 
-#  jfrog:
-#    build: artifactory-jfrog-latest/.
-#    image: jfrog
-#    container_name: artifactory-jfrog
-#    restart: always
-#    ports:
-#     - "26854:8081"
-#     - "26855:8082"
-#    environment:
-#     - INIT_MEM=4096m
-#     - MAX_MEM=8192m
-#    volumes:
-#     - jfrog_data:/var/opt/jfrog/artifactory
+  jfrog:
+    build: artifactory-jfrog-latest/.
+    image: jfrog
+    container_name: artifactory-jfrog
+    restart: always
+    ports:
+     - "8081:8081"
+     - "8082:8082"
+    environment:
+     - INIT_MEM=4096m
+     - MAX_MEM=8192m
+    volumes:
+     - jfrog_data:/var/opt/jfrog
 
 #  mssql-server-2019:
 #    build: mssql-2019/.
@@ -92,17 +92,18 @@ services:
 volumes:
   jenkins_home:
   nexus-data:
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: /home/docker/volume/nexus
   nginx_conf:
     driver: local
     driver_opts:
       type: none
       o: bind
       device: /home/docker/volume/aws-nginx
+  jfrog_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/docker/volume/jfrog
   
 networks:
   default:
