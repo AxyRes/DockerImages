@@ -16,14 +16,20 @@ services:
     image: jfrog
     container_name: artifactory-jfrog
     restart: always
+    logging:
+      driver: json-file
+      options:
+        max-size: "50m"
+        max-file: "10"
     ports:
      - "8081:8081"
      - "8082:8082"
     environment:
-     - INIT_MEM=4096m
-     - MAX_MEM=8192m
+     - INIT_MEM=10240m
+     - MAX_MEM=15360m
     volumes:
-     - jfrog_data:/var/opt/jfrog
+      - ${ROOT_DATA_DIR}/var:/var/opt/jfrog/artifactory
+      - /etc/localtime:/etc/localtime:ro
 
 #  mssql-server-2019:
 #    build: mssql-2019/.
@@ -40,35 +46,10 @@ services:
 #    volumes:
 #      - mssql:/var/opt/mssql
 
-#  nginx:
-#    build: nginx/.
-#    image: nginx
- #   container_name: nginx
-#    restart: always
-#    ports:
-#     - "80:80"
-#     - "443:443"
-#    environment:
-#     - INIT_MEM=512m
-#     - MAX_MEM=1024m
-#    volumes:
-#     - nginx_conf:/etc/nginx
-
-  jenkins:
-    image: jenkins/jenkins:lts
-    container_name: jenkins
-    ports:
-      - "8080:8080"
-    environment:
-      - JENKINS_OPTS="--prefix=/jenkins"
-    volumes:
-      - jenkins_home:/var/jenkins_home
-    restart: always
-
-  aws-nginx-nexus:
-    build: aws-nginx-nexus/.
-    image: nginx-nexus
-    container_name: nginx-nexus
+  nginx:
+    build: nginx/.
+    image: nginx
+    container_name: nginx
     restart: always
     ports:
      - "80:80"
@@ -78,32 +59,3 @@ services:
      - MAX_MEM=1024m
     volumes:
      - nginx_conf:/etc/nginx
-
-  nexus:
-    image: sonatype/nexus3
-    container_name: nexus3
-    restart: always
-    ports:
-      - "8081:8081"
-    volumes:
-      - nexus-data:/nexus-data
-    
-
-volumes:
-  jenkins_home:
-  nexus-data:
-  nginx_conf:
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: /home/docker/volume/aws-nginx
-  jfrog_data:
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: /home/docker/volume/jfrog
-  
-networks:
-  default:
