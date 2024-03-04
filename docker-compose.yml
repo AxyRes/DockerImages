@@ -58,4 +58,8 @@ services:
      - INIT_MEM=512m
      - MAX_MEM=1024m
     volumes:
-     - /etc/nginx:/etc/nginx
+     - nginx_conf:/etc/nginx
+     
+volumes:
+  nginx_conf:
+    external: true
