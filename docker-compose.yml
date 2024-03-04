@@ -28,7 +28,7 @@ services:
      - INIT_MEM=10240m
      - MAX_MEM=15360m
     volumes:
-      - ${ROOT_DATA_DIR}/var:/var/opt/jfrog/artifactory
+      - /var:/var/opt/jfrog/artifactory
       - /etc/localtime:/etc/localtime:ro
 
 #  mssql-server-2019:
@@ -58,4 +58,4 @@ services:
      - INIT_MEM=512m
      - MAX_MEM=1024m
     volumes:
-     - nginx_conf:/etc/nginx
+     - /etc/nginx:/etc/nginx
